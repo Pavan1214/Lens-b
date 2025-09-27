@@ -7,7 +7,7 @@ const cors = require('cors');
 // Load env vars
 dotenv.config();
 
-// Initialize express app
+// Initialize express ap
 const app = express();
 
 // Middleware
