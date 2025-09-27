@@ -187,5 +187,22 @@ router.delete('/:id', async (req, res) => {
         res.status(500).json({ message: 'Failed to delete entry.' });
     }
 });
+router.patch('/:id/like', async (req, res) => {
+  try {
+    const image = await Image.findById(req.params.id);
 
+    if (!image) {
+      return res.status(404).json({ message: 'Image not found.' });
+    }
+
+    // Atomically increment the likes field by 1
+    image.likes += 1;
+    await image.save();
+
+    res.json(image);
+  } catch (err) {
+    console.error('Like Error:', err);
+    res.status(500).json({ message: 'Server Error' });
+  }
+});
 module.exports = router;
