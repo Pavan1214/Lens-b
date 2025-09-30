@@ -7,7 +7,7 @@ const cors = require('cors');
 // Load env vars
 dotenv.config();
 
-// Initialize express ap
+// Initialize express app
 const app = express();
 
 // Middleware
@@ -30,6 +30,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 // API Routes
 app.use('/api/images', require('./routes/images'));
+app.use('/api', require('./routes/tracking')); // <-- ADD THIS LINE
 
 // Start the server
 const PORT = process.env.PORT || 5000;
